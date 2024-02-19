@@ -6,6 +6,7 @@ import {RxAvatar} from "react-icons/rx"
 import { server } from '../../server';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -28,12 +29,19 @@ const Signup = () => {
     newForm.append("password",password);
     
     axios.post(`${server}/create-user`,newForm,config).then((res)=> {
-      if(res.data.success === true){
-        navigate("/login");
-      }
-     
-  }).catch((err)=> console.log(err));
-  };
+      toast.success(res.data.message);
+     setName("");
+     setEmail("");
+     setPassword("");
+     SetAvatar("");
+  })
+  .catch((err)=> {
+    console.log(err.response.data.message);
+     toast.error(err.response.data.message);
+  });
+
+};
+  
 
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
