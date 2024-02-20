@@ -5,8 +5,10 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import { server } from '../../server';
 import {toast} from "react-toastify";
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail]=useState("");
   const [password , setPassword] = useState("");
   const [visible, setVisible] = useState(false);
@@ -22,6 +24,7 @@ const Login = () => {
     )
     .then((res) => {
       toast.success("Login success");
+      navigate("/");
     })
     .catch((err) => {
       toast.error(err.response.data.message);
