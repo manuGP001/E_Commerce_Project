@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes,Route} from "react-router-dom" ;
 import {ToastContainer, toast} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {LoginPage, SignupPage , ActivationPage } from "./Routes";
+import {LoginPage, SignupPage , ActivationPage , HomePage} from "./Routes";
 import axios from 'axios';
 import { server } from './server';
+
 
 const App = () => {
   useEffect(() => {
@@ -21,6 +22,7 @@ const App = () => {
     <BrowserRouter>
     <Routes>
       <Route path="/Login" element ={<LoginPage/>}/>
+      <Route path="/Home" element ={<HomePage/>}/>
       <Route path="/Signup" element={<SignupPage/>}/>
       <Route path="/activation/:activation_token" element=
       {<ActivationPage/>}/>
